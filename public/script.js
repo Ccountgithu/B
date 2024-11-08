@@ -134,7 +134,7 @@ function mostrarAlertaAutenticacionIncorrecta() {
     // Crea un contenedor de alerta
     const alerta = document.createElement("div");
     alerta.style.position = "fixed";
-    alerta.style.bottom = "13%";
+    alerta.style.bottom = "12%";
     alerta.style.left = "50%";
     alerta.style.transform = "translateX(-50%)";
     alerta.style.backgroundColor = "#0068b1"; // Color de fondo azul
